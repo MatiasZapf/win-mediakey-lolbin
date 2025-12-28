@@ -61,12 +61,12 @@ Example output:
 Compiling bin\MediaKey.exe...
 
 OK: Compilation successful.
-Generated: "C:\Tools\win-mediakey-lolbin\bin\MediaKey.exe" (4096 bytes)
+Generated: ".\bin\MediaKey.exe" (4096 bytes)
 
 Usage:
-   ...\bin\MediaKey.exe playpause
-   ...\bin\MediaKey.exe next
-   ...\bin\MediaKey.exe prev
+   MediaKey.exe playpause
+   MediaKey.exe next
+   MediaKey.exe prev
 ```
 
 ---
@@ -81,21 +81,23 @@ Usage:
 
 Example for Logitech Options+/G Hub (Ring Actions):
 
-* Action 1: `C:\...\bin\MediaKey.exe playpause`
-* Action 2: `C:\...\bin\MediaKey.exe next`
-* Action 3: `C:\...\bin\MediaKey.exe prev`
+* Action 1: `MediaKey.exe playpause`
+* Action 2: `MediaKey.exe next`
+* Action 3: `MediaKey.exe prev`
 
 ---
 
 ## How it works
 
-The program calls `user32.dll` and simulates the media key event with `keybd_event` using the VKs:
+The program uses P/Invoke to call `keybd_event` from `user32.dll`, simulating media key presses with these virtual key codes:
 
-* `0xB3` → VK_MEDIA_PLAY_PAUSE
-* `0xB0` → VK_MEDIA_NEXT_TRACK
-* `0xB1` → VK_MEDIA_PREV_TRACK
+| Command     | Virtual Key Code | Constant               |
+|-------------|------------------|------------------------|
+| `playpause` | `0xB3`           | VK_MEDIA_PLAY_PAUSE    |
+| `next`      | `0xB0`           | VK_MEDIA_NEXT_TRACK    |
+| `prev`      | `0xB1`           | VK_MEDIA_PREV_TRACK    |
 
-It includes small `Sleep()` calls to prevent the tap from being too short and to ensure Windows processes the event before the process ends.
+Small `Sleep()` calls ensure Windows processes the key event before the process exits.
 
 ---
 
