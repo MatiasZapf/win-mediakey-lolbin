@@ -1,4 +1,4 @@
-# win-mediakey-lolbin
+# win-mediakey-lolbin [![GitHub license](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://unlicense.org/) [![Executable size](https://img.shields.io/badge/size-~4KB-brightgreen)]() [![.NET Framework](https://img.shields.io/badge/.NET-4.x-orange)]()
 
 An ultra-lightweight Windows native utility (~4KB) to control media playback (Play/Pause, Next, Prev) from the command line.
 
@@ -11,6 +11,16 @@ This project is also an educational proof of concept about **LOLBins** (Living O
 It is documented in MITRE ATT&CK as [T1027.004 "Compile After Delivery"](https://attack.mitre.org/techniques/T1027/004/), an evasion technique where code is delivered as plain text and compiled in-situ with `csc.exe` (the .NET Framework compiler pre-installed on Windows).
 
 In this case, the usage is completely legitimate: a 4KB utility to control the music player.
+
+---
+
+## Why this exists
+
+- No installation required
+- Tiny executable (~4KB)
+- No background process or tray icon
+- Perfect for binding to mouse gestures, stream deck, or shortcuts
+- Pure Windows native (no third-party dependencies)
 
 ---
 
@@ -101,6 +111,7 @@ Small `Sleep()` calls ensure Windows processes the key event before the process 
 
 ---
 
-## 📄 License
+## License
 
-This project is public domain. Feel free to use it, modify it, and learn from it.
+This project is dedicated to the public domain - [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
+No rights reserved.
